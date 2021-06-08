@@ -24,7 +24,7 @@ class CalendarWidget extends \WP_Widget {
   public function enqueue_calendar_scripts() {
     wp_enqueue_script('event-creator-calendar');
     $tt_opts = array(
-      'api_endpoint' => $this->base->api_pub_endpoint,
+      'api_endpoint' => $this->base->api_endpoint,
       'public_key' => get_option('ticketteer-pub-key'),
     );
     wp_localize_script( 'event-creator-calendar', 'ttOpts', $tt_opts );

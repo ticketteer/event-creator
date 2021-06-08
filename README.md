@@ -1,9 +1,10 @@
 # Event Creator
+
 Contributors: ticketteer
 Tags: tickets, event, manage, show, theatre, sell, credit card
 Requires at least: 3.7
-Tested up to: 4.8
-Stable tag: 0.0.0
+Tested up to: 5.7
+Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,15 +17,16 @@ links them with venues, artists and dates. It is especially meant for theatres,
 artists.
 
 It allows you to link your Wordpress page to Ticketteer (https://ticketteer.com)
+
 - an online ticket management system. This will sync events and dates and provide
-feedback about booking status of your events from Ticketteer.
+  feedback about booking status of your events from Ticketteer.
 
 ## Features
 
-* Events - Manage your events
-* Dates - Add dates to events
-* Venues - Manage venues and link them to dates
-* Artists - Manage artists / ensembles / participants of your event and link them
+- Events - Manage your events
+- Dates - Add dates to events
+- Venues - Manage venues and link them to dates
+- Artists - Manage artists / ensembles / participants of your event and link them
   to it.
 
 ## Installation
@@ -37,9 +39,11 @@ This should give you additional menu entries in your wordpress admin page.
 ## Usage
 
 #### `get_dates_query()`
+
 loads dates (custom post type) into wordpress' main loop.
 
 Example:
+
 ```php
 <?php
 get_dates_query(); // load dates into wordpress main loop
@@ -66,8 +70,8 @@ dateId: ticketteer_date_id
 You can get ticketteer_date_id by php-ing:
 `get_date_field('ticketteer_date_id', $date->ID);`
 
-
 Example:
+
 ```
 tt.checkDate('5a0bf7e90b4aa10001fdc93f')
   .then(function(result){
@@ -84,8 +88,9 @@ tt.checkDate('5a0bf7e90b4aa10001fdc93f')
 == Changelog ==
 
 = 1.0 =
-* Initial commit with main functionality.
+
+- Initial commit with main functionality.
 
 ## Rewrite /artists /events with your own paths
 
-RewriteRule ^kuenstler/(.*)$ /artists/$1 [NC,P,L]
+RewriteRule ^kuenstler/(.\*)$ /artists/$1 [NC,P,L]
