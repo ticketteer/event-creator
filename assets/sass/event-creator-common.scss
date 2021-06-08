@@ -1,0 +1,165 @@
+@import "variables";
+
+.event-creator-day-row{
+  display: flex;
+  align-items: center;
+  font-size: $event-creator-default-font-size;
+  margin-bottom: 1em;
+  .event-creator-day-num{
+    flex: 0 0 6em;
+    text-align: center;
+    border-right: 1px solid $event-creator-border-color;
+    padding-right: 1em;
+    margin-right: 1em;
+    align-self: stretch;
+    .cancelled{
+      text-decoration: line-through;
+    }
+    .event-creator-day-title{
+      font-size: 40px;
+      line-height: 1.3em;
+      color: $event-creator-day-title;
+    }
+    .event-creator-day-subtitle{
+      font-size: 10px;
+      color: $event-creator-day-subtitle;
+    }
+  }
+  .event-creator-day-events{
+    flex: 1 1 auto;
+    .cancelled:not(.ticketteer-book-btn){
+      text-decoration: line-through;
+    }
+    .event-creator-day-event{
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5em;
+    }
+    .event-creator-weekday-name{
+      color: $event-creator-grey;
+    }
+    .event-creator-day-details{
+      flex: 0 0 200px;
+    }
+    .event-creator-day-title{
+      flex: 1 1 auto;
+      h2{
+        margin: 0;
+        padding: 0;
+        a{
+          text-decoration: none;
+          border: none;
+          box-shadow: none;
+        }
+      }
+    }
+    .event-creator-buy{
+      min-width: 150px;
+      text-align: center;
+    }
+  }
+}
+
+.ticketteer-sold-out-text,
+.ticketteer-rest-seats-text,
+.ticketteer-cancelled-text {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  line-height: 0.8em;
+}
+
+a.ticketteer-book-btn{
+  background-color: $danger-color;
+  color: $white;
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
+  padding: 4px 10px;
+  border-radius: 3px;
+  &:hover{
+    box-shadow: none;
+    border: none;
+    color: #fff;
+  }
+  &.cancelled{
+    background-color: $white;
+    color: #d55;
+  }
+  &.rest-seats{
+    background-color: #fc0;
+    color: #333;
+  }
+  &.sold-out{
+    background-color: $white;
+    color: #333;
+  }
+}
+
+.event-creator-artist-row{
+  display: flex;
+  align-items: flex-start;
+  font-size: $event-creator-default-font-size;
+  margin-bottom: 2em;
+
+  .event-creator-artist-date{
+    flex: 0 0 15em;
+    &.cancelled{
+      text-decoration: line-through;
+    }
+  }
+  .event-creator-artist-event-title{
+    flex: 1 1 auto;
+  }
+  .event-creator-buy{
+    flex: 0 0 10em;
+    align-self: center;
+  }
+}
+
+.event-creator-upcoming-row{
+  display: flex;
+  align-items: flex-start;
+  .event-creator-upcoming-time{
+    flex: 0 0 10em;
+  }
+  .event-creator-upcoming-title{
+    flex: 1 1 auto;
+    .subtitle{
+      margin: 0;
+      font-size: 10px;
+      line-height: 12px;
+
+    }
+  }
+  .event-creator-upcoming-note{
+    color: lighten($dark-grey, 20%);
+  }
+  .event-creator-buy{
+    flex: 0 0 10em;
+  }
+  h2{
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .event-creator-day-row {
+    .event-creator-day-events {
+      .event-creator-day-event{
+        flex-wrap: wrap;
+      }
+      .event-creator-day-details,
+      .event-creator-day-title{
+        flex: 1 0 100%;
+      }
+      .event-creator-buy{
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+      }
+    }
+  }
+}

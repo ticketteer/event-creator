@@ -1,0 +1,58 @@
+/**
+ * EventCreator Admin Styles
+ */
+@import "variables";
+@import "mixins";
+
+#event-creator,
+.event-creator,
+#event-creator-venue-details,
+#event-creator-artist-details{
+  background-color: $wp-grey;
+  .event-creator-clear{
+    clear: both;
+    content: '';
+    display: block;
+  }
+
+  /* disable wp handle actions */
+  .handlediv,
+  .hndle{
+    display: none;
+  }
+
+  .inside{
+    padding: 0;
+    margin: 0;
+  }
+
+  .help-block{
+    font-size: 0.7em;
+    color: $wp-grey;
+  }
+
+  @import "tabs";
+  @import "form";
+  @import "dates-list"
+
+}
+
+#event-creator-artist-details,
+#event-creator-venue-details{
+
+  .details-form{
+    padding: 10px 30px;
+  }
+
+}
+
+.ticketteer-text-logo{
+  font-weight: bold;
+  color: $black;
+  .ticketteer-tt{
+    background-color: $danger-color;
+    padding: 2px 5px 3px;
+    border-radius: 50%;
+    color: $white;
+  }
+}

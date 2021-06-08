@@ -1,0 +1,60 @@
+@import "variables";
+@import "jquery-ui/light-scheme";
+
+.form{
+  &.options-form{
+    padding: 2em 4em;
+  }
+  .row{
+    margin: 1.5em 0;
+    border-bottom: 1px solid $navbar-border-color;
+    padding-bottom: 1.5em;
+    .control-label{
+      float: left;
+      width: 160px;
+      padding: 0.6em 0 0;
+    }
+  }
+  .form-control{
+    font-size: 1.4em;
+    margin-left: 180px;
+    min-height: 1.5em;
+    .control-field{
+      width: 100%;
+      font-size: 0.8em;
+      padding: 10px 0;
+      text-indent: 10px;
+    }
+    .control-field-num{
+      padding: 18px 0;
+      width: 5em;
+    }
+    .help-block{
+      font-size: 0.8em;
+      display: block;
+      padding-top: 0.5em;
+      color: lighten($label-color, 10%);
+    }
+    &.form-dropdown{
+      padding-top: 5px;
+      select{
+        width: 100%;
+      }
+    }
+    &.form-checkbox{
+      input[type=checkbox]{
+        margin-top: 10px;
+      }
+    }
+  }
+  .control-label{
+    font-size: 1.2em;
+    color: $label-color;
+    padding: 0 0 0.5em;
+  }
+
+  #wp-content-editor-tools{
+    background-color: inherit;
+  }
+
+}

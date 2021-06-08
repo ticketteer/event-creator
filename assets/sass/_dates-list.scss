@@ -1,0 +1,36 @@
+@import "variables";
+
+.dates-list{
+  width: 100%;
+  border-spacing: 0;
+
+  thead{
+    th{
+      text-align: left;
+      color: $label-color;
+      font-weight: 400;
+      border-bottom: 1px solid darken($navbar-border-color, 20%);
+    }
+  }
+
+  tbody{
+    td{
+      padding: 10px 0;
+      border-bottom: 1px solid $navbar-border-color;
+      a{
+        cursor: pointer;
+      }
+    }
+    .cancelled {
+      td {
+        text-decoration: line-through;
+        .cancelled-text{
+          text-decoration: none;
+          font-weight: 600;
+          color: $danger-color;
+        }
+      }
+    }
+  }
+
+}

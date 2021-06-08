@@ -1,0 +1,35 @@
+$white:                      #fff;
+$black:                      #333;
+$dark-grey:                  lighten($black, 10%);
+$wp-grey:                    #f7f7f7;
+
+$success-color:              #7accb8;
+$success-bg:                 #7accb8;
+
+$info-color:                 #413b6b;
+$info-bg:                    #413b6b;
+
+$warning-color:              #f88f58;
+$warning-bg:                 #f88f58;
+
+$danger-color:               #EE5E18;
+
+$primary-color:              $danger-color;
+$primary-bg:                 $danger-color;
+
+$navbar-border-color:        darken($white, 10%);
+$font_size_tab:              13px;
+
+$label-color:                lighten($black, 30%);
+
+/* public frontend colors
+ */
+
+$event-creator-default-color: #333;
+$event-creator-default-font-size: 14px;
+$event-creator-grey: #777;
+
+$event-creator-border-color: lighten($black, 30%);
+
+$event-creator-day-title: $event-creator-default-color;
+$event-creator-day-subtitle: lighten($event-creator-default-color, 30%);

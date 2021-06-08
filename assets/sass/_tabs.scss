@@ -1,0 +1,83 @@
+@import "variables";
+@import "mixins";
+
+#event-creator-tabs-wrap{
+  display: table;
+  width: 100%;
+}
+
+#event-creator-tabs {
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: $white;
+  display: table-cell;
+  vertical-align: top;
+  .event-creator-tab{
+    display: none;
+    .event-creator-title{
+      float: right;
+      text-align: right;
+      color: $label-color;
+      .event-creator-close-btn{
+        cursor: pointer;
+        margin-left: 1em;
+      }
+    }
+    &.event-creator-active{
+      display: block;
+    }
+  }
+}
+
+#event-creator-tabs-nav{
+  display: table-cell;
+  width: 160px;
+  padding: 0;
+  min-height: 300px;
+  border-right: 1px solid $navbar-border-color;
+  overflow: visible;
+  li {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid $navbar-border-color;
+    a{
+      float: left;
+      display: block;
+      width: 100%;
+      padding: 20px;
+      text-decoration: none;
+      color: lighten($dark-grey, 20%);
+      box-shadow: none !important;
+      box-sizing: border-box;
+      &.event-creator-active,
+      &:hover{
+        background: $white;
+        color: $dark-grey;
+        font-weight: 500;
+        width: calc(100% + 1px);
+      }
+      &:before{
+        font-family: 'dashicons';
+        font-size: 20px;
+        float: left;
+        margin-right: 10px;
+      }
+    }
+    &.event-creator-general a:before{
+      content: "\f119";
+    }
+    &.event-creator-dates a:before{
+      content: "\f145";
+    }
+    &.event-creator-media a:before{
+      content: "\f104";
+    }
+    &.event-creator-settings a:before{
+      content: "\f108";
+    }
+  }
+}
