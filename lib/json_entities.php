@@ -12,7 +12,8 @@ namespace Ticketteer\EventCreator;
  * @since 1.0.0
  *
  */
-function get_date_entity($post_id){
+function get_date_entity($post_id)
+{
   $date = get_post($post_id);
   return formatted_date_entity($date);
 }
@@ -27,9 +28,10 @@ function get_date_entity($post_id){
  * @since 1.0.0
  *
  */
-function get_date_entities($dates){
+function get_date_entities($dates)
+{
   $response = [];
-  foreach( $dates as $date ){
+  foreach ($dates as $date) {
     array_push($response, formatted_date_entity($date));
   }
   return $response;
@@ -45,21 +47,23 @@ function get_date_entities($dates){
  * @since 1.0.0
  *
  */
-function formatted_date_entity($wp_date){
+function formatted_date_entity($wp_date)
+{
   $custom = get_post_custom($wp_date->ID);
   $date = $wp_date->to_array();
   $date['meta'] = array();
-  foreach( $custom as $key => $value ){
-    if (sizeof($value) > 0 ) {
-      if ($key == 'venue_id'){
+  $slug = get_option('ticketteer-slug');
+  foreach ($custom as $key => $value) {
+    if (sizeof($value) > 0) {
+      if ($key == 'venue_id') {
         $venue = get_post($value[0]);
         if ($venue) {
           $date['meta']['venue_name'] = $venue->post_title;
           $date['meta']['venue_id'] = $value[0];
         }
-      } else if ($key == 'ticketteer_date_id'){
-        $date['meta']['ticketteer_link'] = 'https://app.ticketteer.com/orders/' . $value[0];
-      } else if ($key == 'starts_at'){
+      } else if ($key == 'ticketteer_date_id') {
+        $date['meta']['ticketteer_link'] = 'https://shop.ticketteer.com/' . $slug . '/b/' . $value[0];
+      } else if ($key == 'starts_at') {
         $d = new \DateTime();
         $d->setTimestamp($value[0]);
         $date['meta']['starts_at_weekday'] = $d->format('l');

@@ -22,6 +22,15 @@
 
     <div class="row">
       <div class="control-label">
+        <label><?php _e('Ticketteer SLUG', $data['textdomain'], 'event-creator'); ?></label>
+      </div>
+      <div class="form-control">
+        <input type="text" class="control-field" name="ticketteer-slug" value="<?php echo get_option('ticketteer-slug'); ?>" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="control-label">
         <label><?php _e('Ticketteer Private Key', $data['textdomain'], 'event-creator'); ?></label>
       </div>
       <div class="form-control">

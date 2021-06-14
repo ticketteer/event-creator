@@ -114,6 +114,7 @@ class EventCreator
 
 		register_setting('event-creator-settings', 'ticketteer-key');
 		register_setting('event-creator-settings', 'ticketteer-api-endpoint');
+		register_setting('event-creator-settings', 'ticketteer-slug');
 		register_setting('event-creator-settings', 'ticketteer-pub-key');
 		register_setting('event-creator-settings', 'default_start_time');
 		register_setting('event-creator-settings', 'default_venue_id');

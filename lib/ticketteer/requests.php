@@ -4,21 +4,19 @@ namespace Ticketteer\EventCreator;
 
 add_action('event_creator_venue_saved', __NAMESPACE__ . '\sync_venue');
 add_action('event_creator_date_saved', __NAMESPACE__ . '\sync_date');
-// add_action('event_creator_event_saved', __NAMESPACE__ . '\sync_event');
+add_action('event_creator_event_saved', __NAMESPACE__ . '\sync_event');
 add_action('admin_notices', __NAMESPACE__ . '\show_sync_errors');
 add_action('admin_notices', __NAMESPACE__ . '\show_sync_info');
 
 function sync_event($post)
 {
-  error_log(" sync event!");
-
   global $pagenow;
   if (in_array($pagenow, array('post-new.php'))) {
     return;
   }
 
   $body = array(
-    'sync_id' => $post->ID,
+    'ticketteer_id' => $post->ticketteer_event_id,
     'title' => $post->post_title,
     'subtitle' => get_event_field('subtitle', $post->ID),
     'description' => get_the_excerpt($post->ID),
@@ -28,46 +26,52 @@ function sync_event($post)
     'is_public' => true,
   );
   $body = sync_ticketteer($post, $body, 'events');
-  if (isset($body) && $body->lineup_event) {
-    \update_post_meta($post->ID, 'ticketteer_event_id', $body->lineup_event->id);
+  error_log("event entity: " . $body->event->id);
+  if (isset($body) && $body->event) {
+    \update_post_meta($post->ID, 'ticketteer_event_id', $body->event->id);
   }
 }
 
 function sync_date($post)
 {
   $starts = get_date_field('starts_at', $post->ID)->format('U');
-  $starts -= get_option('gmt_offset') * 3600; // fix timezone offset errors from wordpress
   $cancelled = get_date_field('cancelled', $post->ID);
   $premiere = get_date_field('premiere', $post->ID);
   $event_id = get_date_field('event_id', $post->ID);
+  $location_id = get_date_field('venue_id', $post->ID);
   $body = array(
-    'sync_id' => $post->ID,
+    'ticketteer_id' => $post->ticketteer_date_id,
     'starts_at' => $starts,
     'cancelled' => $cancelled == '1',
     'premiere' => $premiere == '1',
-    'location_sync_id' => get_date_field('venue_id', $post->ID),
+    'seats' => get_venue_field('seats', $location_id),
+    'event_id' => get_event_field('ticketteer_event_id', $event_id),
+    'location_id' => get_venue_field('ticketteer_location_id', $location_id),
     'annotation' => get_date_field('note', $post->ID),
     'title' => get_event_field('title', $event_id),
     'subtitle' => get_event_field('subtitle', $event_id),
     'description' => get_the_excerpt($post->ID),
-    'price_group_id' => get_event_field('price_group_id', $event_id),
+    'price_category_template_name' => get_event_field('price_group', $event_id),
     'on_sale' => true,
   );
-  $body = sync_ticketteer($post, $body, 'events');
-  if (isset($body) && $body->lineup_date) {
-    \update_post_meta($post->ID, 'ticketteer_date_id', $body->id);
+  $body = sync_ticketteer($post, $body, 'dates');
+  if (isset($body) && $body->date) {
+    \update_post_meta($post->ID, 'ticketteer_date_id', $body->date->id);
   }
 }
 
 function sync_venue($post)
 {
   $body = array(
-    'sync_id' => $post->ID,
+    'ticketteer_id' => $post->ticketteer_location_id,
     'seats' => get_venue_field('seats', $post->ID),
     'name' => $post->post_title,
     'description' => $post->post_content,
   );
-  sync_ticketteer($post, $body, 'lineup_orgs');
+  $body = sync_ticketteer($post, $body, 'locations');
+  if (isset($body) && $body->location) {
+    \update_post_meta($post->ID, 'ticketteer_location_id', $body->location->id);
+  }
 }
 
 /**
