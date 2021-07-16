@@ -34,14 +34,17 @@ function sync_event($post)
 
 function sync_date($post)
 {
-  $starts = get_date_field('starts_at', $post->ID)->format('U');
+  $starts = get_date_field('starts_at', $post->ID);
+  $starts->setTimezone(new \DateTimeZone('UTC'));
+  error_log("DATE STARTS AT " . print_r($starts->format('U'), true));
+
   $cancelled = get_date_field('cancelled', $post->ID);
   $premiere = get_date_field('premiere', $post->ID);
   $event_id = get_date_field('event_id', $post->ID);
   $location_id = get_date_field('venue_id', $post->ID);
   $body = array(
     'ticketteer_id' => $post->ticketteer_date_id,
-    'starts_at' => $starts,
+    'starts_at' => $starts->format('U'),
     'cancelled' => $cancelled == '1',
     'premiere' => $premiere == '1',
     'seats' => get_venue_field('seats', $location_id),
@@ -117,8 +120,6 @@ function sync_ticketteer($post, $body_args, $type)
       'body'       => $body_args,
     )
   );
-
-  error_log("response is" . print_r($response, true));
 
   if (is_array($response) && $response['response'] && $response['response']['code']) {
     $code = $response['response']['code'];
