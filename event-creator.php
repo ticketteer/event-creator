@@ -60,6 +60,7 @@ class EventCreator
 
 	public $plugin_slug = 'event-creator';
 	public $api_endpoint = 'https://dashboard.ticketteer.com/api/';
+	public $shop_endpiont = 'https://shop.ticketteer.com';
 
 	public $event_dates;
 

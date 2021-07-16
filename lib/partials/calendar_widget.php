@@ -10,6 +10,7 @@
           $cancelled = get_date_field('cancelled', $date->ID);
           $note = get_date_field('note', $date->ID);
           $ticketteer_date_id = get_date_field('ticketteer_date_id', $date->ID);
+          $slug = get_option('ticketteer-slug');
 
           $tags = get_date_tags($date->ID, true);
 
@@ -84,7 +85,7 @@
                         <a class="ticketteer-book-btn rest-seats date-rest-seats-<?= $ticketteer_date_id ?>" hidden>
                           <?= ec_get_rest_seats_text($data); ?>
                         </a>
-                        <a target="_blank" class="ticketteer-book-btn date-<?= $ticketteer_date_id ?>" data-ticketteer-date-id="<?= $ticketteer_date_id ?>" href="https://book.ticketteer.com/<?php echo get_event_field('ticketteer_event_id', $event->ID); ?>/<?php echo $starts->format('YmdHi'); ?>">
+                        <a target="_blank" class="ticketteer-book-btn date-<?= $ticketteer_date_id ?>" data-ticketteer-date-id="<?= $ticketteer_date_id ?>" href="https://shop.ticketteer.com/<?= $slug  ?>/b/<?= $ticketteer_date_id ?>">
                           <?php
                             $buy_tickets_text = esc_html__('Buy Tickets', $data['textdomain'], 'event-creator');
                             if (empty($data['fields']['buy_tickets_text'])) {
